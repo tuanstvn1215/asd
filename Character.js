@@ -1,14 +1,14 @@
 export class Character {
+  #img;
   constructor(game, src, x, y) {
     this.canvasCtx = game.canvasCtx;
     this.x = x;
     this.y = y;
     this.speed = 0;
     this.src = src;
-    this.pos = 100;
-    this.img = new Image();
-    this.img.src = this.src;
-    this.a = 0.01;
+    this.#img = new Image();
+    this.#img.src = this.src;
+    this.a = 0.02;
     this.speed_y = 0;
     this.width = 30;
     this.height = 20;
@@ -22,7 +22,12 @@ export class Character {
     this.y += this.speed_y;
   }
   jump() {
-    this.speed_y = -1.1;
+    this.speed_y = -1.51;
+  }
+  setImg(src) {
+    this.src = src;
+    this.#img = new Image();
+    this.#img.src = this.src;
   }
   check_die(x, y, width, height) {
     if (this.check_point_in_area(this.x, this.y, x, y, width, height))
@@ -63,8 +68,13 @@ export class Character {
     }
   }
   update() {
-    this.canvasCtx.drawImage(this.img, this.x, this.y, this.width, this.height);
-    let img2 = new Image();
+    this.canvasCtx.drawImage(
+      this.#img,
+      this.x,
+      this.y,
+      this.width,
+      this.height
+    );
 
     this.drop();
   }

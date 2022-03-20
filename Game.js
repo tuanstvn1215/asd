@@ -37,7 +37,7 @@ export class Game {
       that.character.jump();
     });
     this.setSpeed(0.5);
-    this.obstacle.init();
+    this.obstacle.init_pipe();
     setInterval(() => {
       this.update();
       this.canvasCtx.fillRect(10, 10, this.sound.vol / 100, 20);

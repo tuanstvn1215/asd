@@ -6,7 +6,7 @@ export class Obstacle {
     this.pipes = [];
   }
 
-  init() {
+  init_pipe() {
     let y_safe_zone = Math.random() * this.game.height - this.game.safe_zone;
     if (y_safe_zone < 0) y_safe_zone = 0;
     let up_pipe = new Pipe(this.game);
@@ -28,9 +28,9 @@ export class Obstacle {
 
     if (
       this.pipes[this.pipes.length - 1].up_pipe.x ==
-      this.game.width - this.game.pipe_to_pipe
+      this.game.width - this.game.pipe_to_pipe - this.pipes[0].up_pipe.width
     ) {
-      this.init();
+      this.init_pipe();
     }
 
     this.pipes.forEach((pipes) => {
