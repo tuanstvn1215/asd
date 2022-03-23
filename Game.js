@@ -5,7 +5,7 @@ import { Character } from "./Character.js";
 
 export class Game {
   constructor() {
-    this.height = 700;
+    this.height = 650;
     this.width = 500;
     this.speed = 1;
     this.canvas = document.querySelector("canvas");
@@ -17,7 +17,28 @@ export class Game {
     this.obstacle = new Obstacle(this);
     this.safe_zone = 200;
   }
-
+  setLevel(level) {
+    switch (level) {
+      case 1:
+        this.background.setImg("./public/img/backgroud1.jpg");
+        break;
+      case 2:
+        this.background.setImg("./public/img/backgroud2.jpg");
+        break;
+      case 3:
+        this.background.setImg("./public/img/backgroud3.jpg");
+        break;
+      case 4:
+        this.background.setImg("./public/img/backgroud4.jpg");
+        break;
+        0;
+      case 5:
+        this.background.setImg("./public/img/backgroud5.jpg");
+        break;
+      default:
+        break;
+    }
+  }
   setSpeed(speed) {
     this.background.setSpeed(speed);
   }
@@ -31,6 +52,7 @@ export class Game {
 
   run() {
     this.background = new Background(this, "./public/img/14922843.jpg");
+    this.setLevel(2);
     this.character = new Character(this, "./public/img/pig.png", 100, 350);
     let that = this;
     this.canvas.addEventListener("click", () => {
