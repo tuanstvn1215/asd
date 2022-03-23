@@ -52,7 +52,7 @@ export class Game {
 
   run() {
     this.background = new Background(this, "./public/img/14922843.jpg");
-    this.setLevel(2);
+    this.setLevel(3);
     this.character = new Character(this, "./public/img/pig.png", 100, 350);
     let that = this;
     this.canvas.addEventListener("click", () => {
