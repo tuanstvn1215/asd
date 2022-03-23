@@ -1,3 +1,6 @@
+const sleep = (milliseconds) => {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
+};
 export class Pipe {
   constructor(game) {
     this.level = 2;
@@ -14,7 +17,7 @@ export class Pipe {
 
   init(status, x, y_safe_zone, width, level) {
     this.status = status;
-
+    this.level = level;
     this.y_safe_zone = y_safe_zone;
     if (status) {
       this.y = 0;
@@ -30,10 +33,18 @@ export class Pipe {
 
     this.game.canvasCtx.fillRect(this.x, this.y, this.width, this.height);
   }
-  update() {
+  async update() {
     this.x -= 1;
     switch (this.level) {
       case 1:
+        if (this.status) {
+          this.y = 0;
+          this.height = this.y_safe_zone;
+        } else {
+          this.y = this.y_safe_zone + this.safe_zone;
+          this.height = this.game.height - this.y_safe_zone + this.safe_zone;
+        }
+        this.game.canvasCtx.fillRect(this.x, this.y, this.width, this.height);
         break;
       case 2:
         if (this.y_safe_zone <= 0) {
@@ -49,8 +60,6 @@ export class Pipe {
         } else {
           this.y = this.y_safe_zone + this.safe_zone;
           this.height = this.game.height - this.y_safe_zone + this.safe_zone;
-
-          console.log(this.y_safe_zone);
         }
         this.game.canvasCtx.fillRect(this.x, this.y, this.width, this.height);
         break;
