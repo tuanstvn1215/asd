@@ -12,7 +12,7 @@ export class Pipe {
     this.direction = -0.5;
   }
 
-  init(status, x, y_safe_zone, width) {
+  init(status, x, y_safe_zone, width, level) {
     this.status = status;
 
     this.y_safe_zone = y_safe_zone;
