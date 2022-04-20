@@ -17,16 +17,20 @@ export class Game {
     this.obstacle = new Obstacle(this);
     this.safe_zone = 200;
   }
+  setMode() {}
   setLevel(level) {
     switch (level) {
       case 1:
         this.background.setImg("./public/img/backgroud1.jpg");
+        this.obstacle.setLevel(1);
         break;
       case 2:
         this.background.setImg("./public/img/backgroud2.jpg");
+        this.obstacle.setLevel(2);
         break;
       case 3:
         this.background.setImg("./public/img/backgroud3.jpg");
+        this.obstacle.setLevel(3);
         break;
       case 4:
         this.background.setImg("./public/img/backgroud4.jpg");
@@ -52,7 +56,7 @@ export class Game {
 
   run() {
     this.background = new Background(this, "./public/img/14922843.jpg");
-    this.setLevel(3);
+    this.setLevel(2);
     this.character = new Character(this, "./public/img/pig.png", 100, 350);
     let that = this;
     this.canvas.addEventListener("click", () => {

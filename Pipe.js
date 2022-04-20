@@ -2,7 +2,8 @@ const sleep = (milliseconds) => {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
 };
 export class Pipe {
-  constructor(game) {
+  #img;
+  constructor(game, src) {
     this.level = 2;
     this.game = game;
     this.y = 0;
@@ -13,6 +14,8 @@ export class Pipe {
     this.height = 0;
     this.test = false;
     this.direction = -0.5;
+    this.#img = new Image();
+    this.#img.src = "./public/img/h.jpg";
   }
 
   init(status, x, y_safe_zone, width, level) {
@@ -30,7 +33,8 @@ export class Pipe {
       this.width = width;
       this.height = this.game.height - this.y_safe_zone + this.safe_zone;
     }
-
+    const pattern = this.game.canvasCtx.createPattern(this.#img, "repeat");
+    this.game.canvasCtx.fillStyle = pattern;
     this.game.canvasCtx.fillRect(this.x, this.y, this.width, this.height);
   }
   async update() {
@@ -44,6 +48,8 @@ export class Pipe {
           this.y = this.y_safe_zone + this.safe_zone;
           this.height = this.game.height - this.y_safe_zone + this.safe_zone;
         }
+        const pattern = this.game.canvasCtx.createPattern(this.#img, "repeat");
+        this.game.canvasCtx.fillStyle = pattern;
         this.game.canvasCtx.fillRect(this.x, this.y, this.width, this.height);
         break;
       case 2:
@@ -76,7 +82,8 @@ export class Pipe {
         this.game.canvasCtx.fillRect(this.x, this.y, this.width, this.height);
         break;
     }
-    this.game.canvasCtx.fillRect(this.x, this.y, this.width, this.height);
+    this.game.canvasCtx.strokeRect(this.x, this.y, this.width, this.height);
+
     if (
       this.game.character.check_die(this.x, this.y, this.width, this.height)
     ) {

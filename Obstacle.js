@@ -18,7 +18,7 @@ export class Obstacle {
     function getRandomInt(max) {
       return Math.floor(Math.random() * max);
     }
-    let level_pipe = getRandomInt(2);
+    let level_pipe = getRandomInt(this.level);
     switch (level_pipe) {
       case 0:
         up_pipe.init(0, x, y_safe_zone, 70, 1);
@@ -26,8 +26,8 @@ export class Obstacle {
 
         break;
       case 1:
-        up_pipe.init(0, x, y_safe_zone, 140, 2);
-        down_pipe.init(1, x, y_safe_zone, 140, 2);
+        up_pipe.init(0, x, y_safe_zone, 140, 1);
+        down_pipe.init(1, x, y_safe_zone, 140, 1);
         break;
       case 2:
         up_pipe.init(0, x, y_safe_zone, 1000, 2);

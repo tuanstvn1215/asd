@@ -6,7 +6,7 @@ export class Character {
     this.y = y;
     this.speed = 0;
     this.src = src;
-    this.#img = new Image();
+    this.#img = document.createElement("img");
     this.#img.src = this.src;
     this.a = 0.02;
     this.speed_y = 0;
